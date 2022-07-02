@@ -5,7 +5,7 @@ class RootGUI:
     def __init__(self):
         self.root = Tk()
         self.root.title("Zelp FMLR Serial GUI")
-        self.root.geometry("360x360")
+        self.root.geometry("480x480")
         self.root.config(bg = "white")
 
 class ComGUI:
@@ -15,6 +15,9 @@ class ComGUI:
         self.frame = LabelFrame(root, text = "Com Manager", padx= 5, pady= 5, bg = "white")
         self.label_com = Label(self.frame, text = "Available Ports", width= 15, bg = "white", anchor="w")
         self.baudrate = Label(self.frame, text = "BaudRate", width= 15, bg = "white", anchor="w")
+        self.button_refresh = Button(self.frame, text="Refresh Port List", width= 20,command= self.com_refresh )
+        self.button_connect = Button(self.frame, text="Connect", width= 20, state= "disabled", command= self.serial_connect)
+
         self.ComOptionMenu()
         self.BaudOptionMenu()
 
@@ -29,7 +32,7 @@ class ComGUI:
         coms = [" - ", "COM3", "COM4", "COM5"]
         self.clicked_com = StringVar()
         self.clicked_com.set(coms[0])
-        self.dropcom = OptionMenu(self.frame, self.clicked_com, *coms)
+        self.dropcom = OptionMenu(self.frame, self.clicked_com, *coms, command= self.connect_ctrl)
         self.dropcom.config(width= 20)
         pass
 
@@ -55,8 +58,24 @@ class ComGUI:
         self.dropcom.grid(column=2, row=2, padx= self.padx, pady= self.pady)
         self.clicked_baud.grid(column=2, row=3)
         self.baudrate.grid(column=1, row=3)
+        self.button_refresh.grid(column=3, row=2)
+        self.button_connect.grid(column=3, row=3)
 
         pass
+    def connect_ctrl(self, other):
+        print("Connect Control")
+        pass
+
+    def com_refresh(self):
+        print("Refresh Port")
+        pass
+
+    def serial_connect(self):
+        print("Connecting Port")
+        pass
+
+
+
 
 if __name__ == "__main__":
     RootGUI()
